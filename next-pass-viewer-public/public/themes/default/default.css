@@ -1,0 +1,182 @@
+/* /public/themes/default/default.css */
+
+/* -------------------------- */
+/* ---- AOS 20分前 stage ---- */
+/* -------------------------- */
+/* テーマ: 「出撃前の静寂と鋭い決意」 - 戦闘直前の静けさの中、パイロットの決意が輝く瞬間を表現 */
+
+/* 衛星名/カウントダウン色：メタリックシルバー */
+.alert-20min-default .first-pass-card .satellite-name,
+.alert-20min-default .first-pass-card .countdown-time {
+    color: #c0c0c0;
+}
+
+/* 上下に現れる輝くライン（シャインエフェクト） */
+.alert-20min-default::before,
+.alert-20min-default::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 8vh;
+    background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.6), transparent);
+    z-index: 0;
+    /* 上下から滑らかに現れる */
+    animation: shineIn 2s forwards;
+}
+
+/* 初期位置 */
+.alert-20min-default::before {
+    top: 0;
+    transform: translateY(-100%);
+}
+
+.alert-20min-default::after {
+    bottom: 0;
+    transform: translateY(100%);
+}
+
+@keyframes shineIn {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* カード: 金属的な輝きと控えめなパルス効果 */
+.alert-20min-default .first-pass-card {
+    border: 2px solid #c0c0c0;
+    background-color: #1a1a1a;
+    animation: cardGlow 2s infinite alternate;
+}
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 0 0 8px rgba(192, 192, 192, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 16px rgba(192, 192, 192, 0.8);
+    }
+}
+
+
+/* -------------------------- */
+/* ---- AOS 15分前 stage ---- */
+/* -------------------------- */
+/* テーマ: 「戦闘直前の緊迫と炎の情熱」 - 戦いの火蓋が切られる直前の、燃え盛る情熱と緊張感を表現 */
+
+/* 衛星名/カウントダウン色：炎のオレンジレッド */
+.alert-15min-default .first-pass-card .satellite-name,
+.alert-15min-default .first-pass-card .countdown-time {
+    color: #ff4500;
+}
+
+/* 上下ストライプ：流れる炎のライン */
+.alert-15min-default::before,
+.alert-15min-default::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background: repeating-linear-gradient(45deg,
+            #ff4500 0 16px,
+            #660000 16px 32px);
+    z-index: 0;
+    /* 横方向へ流れるエフェクト */
+    animation: stripesMoveTop 600s linear infinite;
+}
+
+@keyframes stripesMoveTop {
+    0% {
+        background-position-x: -8000;
+    }
+
+    100% {
+        background-position-x: 8000px;
+    }
+}
+
+.alert-15min-default::after {
+    bottom: 0;
+    /* bottomプロパティを追加 */
+}
+
+/* カード: 戦闘開始の衝動を示す速い点滅 */
+.alert-15min-default .first-pass-card {
+    border: 2px solid #ff4500;
+    background-color: #330000;
+    animation: cardFlare 1s infinite alternate;
+}
+
+@keyframes cardFlare {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
+/* -------------------------- */
+/* ---- LOS中 stage ---- */
+/* -------------------------- */
+/* テーマ: 「戦場の静寂と残響」 - 戦闘終了後の余韻と、失われたものへの哀悼の念を表現 */
+
+/* 衛星名/カウントダウン色：冷たいシアン */
+.alert-los-default .first-pass-card .satellite-name,
+.alert-los-default .first-pass-card .countdown-time {
+    color: #00ffff;
+}
+
+/* 上下ストライプ：静かに消えゆく痕跡 */
+.alert-los-default::before,
+.alert-los-default::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(45deg, #000080, transparent);
+    z-index: 0;
+    animation: fadeAway 300s forwards;
+}
+
+.alert-los-default::before {
+    top: 0;
+}
+
+.alert-los-default::after {
+    bottom: 0;
+}
+
+@keyframes fadeAway {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+}
+
+/* カード: 戦いの余韻を感じさせる穏やかなフェード */
+.alert-los-default .first-pass-card {
+    border: 2px solid #00ffff;
+    background-color: #000033;
+    animation: cardDim 1.5s infinite alternate;
+}
+
+@keyframes cardDim {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,198 @@
+/* /app/api/global.css */
+
+/* ============================== */
+/* 基本スタイル */
+/* ============================== */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    /* 画面全体を埋める */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
+    text-align: center;
+    margin: 0px;
+    /* ヘッダーの上下余白を削除 */
+}
+
+h1 {
+    font-size: 6em;
+    margin-bottom: 20px;
+    /* 時計間の余白を調整 */
+}
+
+.card-body {
+    font-size: 1.2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2等分 */
+    gap: 10px;
+    /* カラム間の余白を調整 */
+    text-align: center;
+    padding: 10px 0;
+    /* 縦方向の余白を少し追加 */
+    border: none;
+    /* 不要な枠線を削除 */
+}
+
+.card-body p {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    /* フォントサイズを微調整 */
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+    /* カード全体の枠線を削除 */
+    margin: 30px 0;
+    /* カード間のスペースを調整 */
+    width: 100%;
+    /* 幅を広げて中央揃え */
+    max-width: 90%;
+    /* 最大幅を制限 */
+}
+
+.card-header {
+    font-size: 3em;
+    /* サイズを調整 */
+    text-align: left;
+    /* ヘッダーは左揃え */
+    margin-bottom: 10px;
+    /* 見た目をスッキリさせる */
+}
+
+.footer {
+    font-size: clamp(12px, 1.25vw, 24px);
+    text-align: right;
+    color: gray;
+    width: 100%;
+}
+
+/* ============================== */
+/* 個別スタイル */
+/* ============================== */
+
+/* 庭のモニター向け */
+@media (width: 1366px) and (height: 768px) {
+    .container {
+        justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 6em;
+    }
+
+    .card {
+        gap: 3px;
+        margin: 15px 0;
+    }
+
+    .card-header {
+        font-size: 3em;
+    }
+
+    .card-body {
+        font-size: 1.2em;
+        gap: 3px;
+        padding: 5px 0;
+    }
+
+    .footer {
+        font-size: 0.9em;
+        margin: 1px 0;
+    }
+}
+
+
+
+/* body には相対 or 何もしないでOK。
+    コンテナを z-index: 2 にして、ストライプを z-index: 0 にすれば
+    テキストのほうが常に前面に来る */
+
+.container {
+    position: relative;
+    z-index: 2;
+    /* コンテナを前面に */
+}
+
+
+/* ============================== */
+/* 縦向き */
+/* ============================== */
+@media (orientation: portrait) {
+
+    /* 画面上端の余白（時計の上を少し開ける） */
+    .container {
+        padding-top: clamp(8px, 2vh, 24px);
+        align-items: stretch;
+        padding-inline: max(12px, env(safe-area-inset-left));
+    }
+
+    /* 文字は可読性優先。clampで端末差を吸収 */
+    h1 {
+        /* 最小2rem, 理想6vw, 最大4rem */
+        font-size: clamp(2rem, 6vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 0.5em;
+    }
+
+    .card {
+        margin: 15px 10px;
+        width: 100%;
+        max-width: 90%;
+    }
+
+    .card-header {
+        font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+    }
+
+    .card-body {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: clamp(6px, 1.5vw, 10px);
+        font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+    }
+
+    .card-body p {
+        font-size: clamp(1.1rem, 3.4vw, 1.6rem);
+        line-height: 1.2;
+    }
+
+    .footer {
+        font-size: clamp(9px, 1.5vw, 24px);
+        margin: 1px 0;
+    }
+}
+
+
+
+
+/* 各種ステージの ::before, ::after は z-index: 0 に */
+.alert-20min-active::before,
+.alert-20min-active::after,
+.alert-15min-active::before,
+.alert-15min-active::after,
+.alert-los-active::before,
+.alert-los-active::after {
+    z-index: 0;
+    /* 背景レイヤー */
+}
